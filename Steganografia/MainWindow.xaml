@@ -5,8 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Steganografia"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Steganografia" Height="700" Width="1000"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <UniformGrid Columns="6" Margin="5,0">
+            <FrameworkElement x:Name="c1"/>
+        </UniformGrid>
+        <TabControl x:Name="tabControl" Background="#21232C">
+
+            <TabItem Header="Algorytm zmiany LSB" Width="{Binding ElementName=c1, Path=ActualWidth}">
+                <Grid Background="#21232C">
+                    <StackPanel Background="#00b3b3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MinHeight="523" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Width="968" Height="623">
+                        <TextBlock x:Name="cipherTitle" Margin="15,10,15,0"  TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontFamily="Helvetica" FontWeight="Light" Width="Auto" TextAlignment="Center" Text="Algorytm najmniej znaczącego bitu"/>
+                        <Border BorderBrush="Black" BorderThickness="0,1,0,0" Margin="15,8" />
+                        <WrapPanel Margin="10 5">
+                            <StackPanel Width="454" Margin="10" HorizontalAlignment="Left">
+
+                                <Button x:Name="loadFile" Click="loadFile_Click"  Background="AliceBlue" Height="32" Content="Wczytaj obraz"/>
+                                <WrapPanel Width="454" Margin="0 10">
+                                    <Border BorderBrush="Gray" BorderThickness="1">
+                                        <Image x:Name="imageNormal" Width="300" MaxHeight="148" MinHeight="148"/>
+                                    </Border>
+                                    <TextBox x:Name="fileInfo"  Width="150" MaxHeight="150" MinHeight="150" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Background="#21232C" Foreground="#E4DFDA" Padding="6" TextWrapping="Wrap" FontSize="8" Text="" VerticalAlignment="Top"/>
+                                </WrapPanel>
+                            </StackPanel>
+                            <StackPanel Width="454" Margin="10" HorizontalAlignment="Left">
+                                <Button x:Name="loadTextToBeCiphered" Click="loadTextToBeCiphered_Click"  Background="AliceBlue" Height="32" Content="Wczytaj plik z wiadomością"/>
+                                <TextBox x:Name="loadedTextToBeCiphered" MaxHeight="150" MinHeight="150" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Background="#21232C" Foreground="#E4DFDA" Padding="6" Margin="0,10,0,5" TextWrapping="Wrap" FontSize="12" Text=""/>
+                            </StackPanel>
+
+                        </WrapPanel>
+
+                        <WrapPanel x:Name="cipheredWrapPanel" Margin="10 5">
+                            <StackPanel Width="454" Margin="10">
+                                <WrapPanel>
+                                    <Button x:Name="cipherButton" Visibility="Visible" Width="222" Click="cipherButton_Click" Background="Moccasin"  Margin="0,0,10,10" Height="32" Content="Zapisz wiadomość na obrazie"/>
+                                    <Button x:Name="decipherButton" Visibility="Visible" Width="222" Click="decipherButton_Click" Background="#ffeccb" Margin="0,0,0,10" Height="32" Content="Odczytaj wiadomość z obrazu"/>
+                                </WrapPanel>
+                                <WrapPanel Width="454">
+                                    <Border BorderBrush="Gray" BorderThickness="1">
+                                        <Image x:Name="imageCiphered" Width="300" MaxHeight="148" MinHeight="148"/>
+                                    </Border>
+                                    <TextBox x:Name="fileCInfo"  Width="150" MaxHeight="150" MinHeight="150" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Background="#21232C" Foreground="#E4DFDA" Padding="6" TextWrapping="Wrap" FontSize="8" Text="" VerticalAlignment="Top"/>
+                                </WrapPanel>
+                                <WrapPanel>
+                                    <Button x:Name="saveCipheredImage" Visibility="Visible" Width="154.4" Click="saveCipheredImage_Click" Background="LightSkyBlue" Margin="0,10,10,5" Height="32" Content="Zapisz obraz"/>
+                                </WrapPanel>
+                            </StackPanel>
+                            <StackPanel Width="454" Margin="10">
+                                <Label FontSize="20">Wiadomość odszyfrowana</Label>
+                                <TextBox x:Name="message" MaxHeight="150" MinHeight="150" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" IsReadOnly="True" Background="#21232C" Foreground="#E4DFDA" Padding="6" Margin="0,5,0,5" TextWrapping="Wrap" FontSize="12" Text=""/>
+                                <WrapPanel>
+                                    <Button x:Name="saveMessage" Visibility="Visible" Width="154.4" Click="saveMessage_Click"    Background="LightSkyBlue" Margin="0,10,10,5" Height="32" Content="Zapisz wiadomość"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </WrapPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Pomoc" Width="{Binding ElementName=c1, Path=ActualWidth}">
+                <ScrollViewer>
+                    <TextBox x:Name="help" FontSize="12" Padding="10" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True"/>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
